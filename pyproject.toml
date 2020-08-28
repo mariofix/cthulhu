@@ -1,13 +1,14 @@
 [tool.poetry]
-name = "flask-skeleton"
-version = "0.0.0"
-description = "blank flask"
+name = "Cthulhu"
+version = "0.0.1"
+description = "CMS a la Flask"
 authors = ["Mario Hernandez <yo@mariofix.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
 flask = "^1.1.2"
 python-dotenv = "^0.14.0"
+peewee = "^3.13.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.0.1"
