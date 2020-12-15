@@ -1,36 +1,29 @@
 from flask import render_template
 from flask_appbuilder.models.sqla.interface import SQLAInterface
-from flask_appbuilder import ModelView, ModelRestApi
-
+from flask_appbuilder import ModelView
+from .models import UserData, Service, ServiceConfig
 from . import appbuilder, db
-
-"""
-    Create your Model based REST API::
-
-    class MyModelApi(ModelRestApi):
-        datamodel = SQLAInterface(MyModel)
-
-    appbuilder.add_api(MyModelApi)
+from flask_appbuilder.actions import action
 
 
-    Create your Views::
+class UserDataView(ModelView):
+    datamodel = SQLAInterface(UserData)
+
+    list_columns = ["user_id", "user_icon", "user_country", "user_tz"]
 
 
-    class MyModelView(ModelView):
-        datamodel = SQLAInterface(MyModel)
+@action(name="config", text="Config", icon='fa-folder-open-o', multiple=False, single=True)
+class ServiceView(ModelView):
+    datamodel = SQLAInterface(Service)
+    list_columns = ["name", "active", 'url_ok']
 
 
-    Next, register your Views::
+class ServiceConfigView(ModelView):
+    datamodel = SQLAInterface(ServiceConfig)
 
+    list_columns = ["name", "data", "active"]
+    related_views = [ServiceView]
 
-    appbuilder.add_view(
-        MyModelView,
-        "My View",
-        icon="fa-folder-open-o",
-        category="My Category",
-        category_icon='fa-envelope'
-    )
-"""
 
 """
     Application wide 404 error handler
@@ -48,3 +41,14 @@ def page_not_found(e):
 
 
 db.create_all()
+"""
+appbuilder.add_view(
+    ServiceView, "Services", icon="fa-folder-open-o", category="System"
+)
+appbuilder.add_view(
+    ServiceConfigView,
+    "Service Config",
+    icon="fa-folder-open-o",
+    category="System"
+)
+"""
