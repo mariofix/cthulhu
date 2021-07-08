@@ -8,6 +8,9 @@ authors = ["Mario Hernandez <yo@mariofix.com>"]
 python = "^3.7"
 Django = "^3.2.5"
 django-baton = "^2.2.1"
+django-debug-toolbar = "^3.2.1"
+django-logentry-admin = "^1.1.0"
+thankyou = "^0.0.1"
 
 
 [tool.poetry.dev-dependencies]
