@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-p53d2=*ik15k=ucsj0l52zro7^t=tb6gh52eta1t0ok8zoc#-z'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core.apps.CoreConfig',
+    'core',
     'debug_toolbar',
     'logentry_admin',
     'baton.autodiscover',
@@ -56,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'cthulhu.urls'
@@ -120,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'es'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'America/Santiago'
 
@@ -142,12 +143,12 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 BATON = {
-    'SITE_HEADER': 'Header',
-    'SITE_TITLE': 'Title',
-    'INDEX_TITLE': 'Index Title',
-    'SUPPORT_HREF': 'https://api.whatsapp.com/send/?phone=56963349072&text=Soy+el+supervisor+del+servicio%2C+cu%C3%A9ntame+en+que+te+puedo+ayudar%3F&app_absent=0',
-    'COPYRIGHT': '&copy;2020 <a href="/">ZVN Comunicaciones</a>', 
+    'SITE_HEADER': 'Cthulhu', # general name
+    'SITE_TITLE': 'cthulhu', # added title
+    'INDEX_TITLE': 'Cthulhu Admin',
+    'SUPPORT_HREF': 'https://about.me/mariofix',
+    'COPYRIGHT': '&copy;2021 <a href="https://about.me/mariofix">mariofix</a>', 
     'POWERED_BY': '<a href="https://about.me/mariofix">mariofix</a>',
-    'MENU_TITLE': 'Menu',
+    'MENU_TITLE': 'Cthulhu',
     'MESSAGES_TOASTS': True,
 }

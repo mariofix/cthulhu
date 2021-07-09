@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from thankyou import give_thanks
-from django.http import HttpResponse
+from django.contrib.auth.views import LoginView 
 
-# Create your views here.
+
+def index(request):
+    return redirect("/core/login")
+
 def hello(request):
-    lala = 1
     return render(request, 'hello.html', {'thanks': give_thanks()})
