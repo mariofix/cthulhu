@@ -7,11 +7,10 @@
         <title> Cthulhu Login </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Place favicon.ico in the root directory -->
-        <link rel="stylesheet" href="{% static 'core/css/vendor.css' %}">
-        <!-- Theme initialization -->
-        <link rel="stylesheet" id="theme-style" href="{% static 'core/css/app.css' %} ">
-        <link rel="stylesheet" id="theme-style" href="{% static 'core/css/app-red.css' %} ">
+        <link rel="stylesheet" href="{% static 'core/js/bootstrap/dist/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'core/css/animate.css/animate.css' %} ">
+        <link rel="stylesheet" href="{% static 'core/css/font-awesome/css/font-awesome.css' %} ">
+        <link rel="stylesheet" href="{% static 'core/css/app-red.css' %} ">
     </head>
     <body>
         <div class="auth">
@@ -25,7 +24,7 @@
                     </header>
                     <div class="auth-content">
                         <p class="text-center">LOGIN TO CONTINUE</p>
-                        <form id="login-form" action="/index.html" method="GET" novalidate="">
+                        <form id="login-form" action="/index.html" method="post" novalidate>
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="email" class="form-control underlined" name="username" id="username" placeholder="Your email address" required>
@@ -60,7 +59,12 @@
                 <div class="color-secondary"></div>
             </div>
         </div>
-        <script src="{% static 'core/js/vendor.js' %}"></script>
-        <script src="{% static 'core/js/app.js' %}"></script>
+        <script src="{% static 'core/js/jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'core/js/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'core/js/jquery-validation/dist/additional-methods.min.js' %}"></script>
+        <script src="{% static 'core/js/responsive-toolkit/dist/bootstrap-toolkit.js' %}"></script>
+        <script src="{% static 'core/js/tinycolor2/dist/tinycolor-min.js' %}"></script>
+        <script src="{% static 'core/js/nprogress/nprogress.js' %}"></script>
+        <script src="{% static 'core/js/app-auth.js' %}"></script>
     </body>
 </html>
