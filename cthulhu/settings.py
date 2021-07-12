@@ -21,76 +21,69 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = "key"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['nagini.local']
-INTERNAL_IPS = ['127.0.0.1', '192.168.1.89']
-
-
+TEMPLATE_DEBUG = DEBUG
+ALLOWED_HOSTS = ["nagini.local"]
+INTERNAL_IPS = ["127.0.0.1", "192.168.1.89"]
 
 # Application definition
-
+ROOT_URLCONF = "cthulhu.urls"
+WSGI_APPLICATION = "cthulhu.wsgi.application"
 INSTALLED_APPS = [
-    'baton',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'core',
-    'debug_toolbar',
-    'logentry_admin',
-    'baton.autodiscover',
+    "baton",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "core",
+    "debug_toolbar",
+    "logentry_admin",
+    "baton.autodiscover",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-    
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
-
-ROOT_URLCONF = 'cthulhu.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'cthulhu.wsgi.application'
-
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
-        'HOST': '',
-        'PORT': '',
-        'USER': '',
-        'PASSWORD': '',
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "",
+        "HOST": "",
+        "PORT": "",
+        "USER": "",
+        "PASSWORD": "",
     }
 }
 
@@ -104,16 +97,16 @@ pymysql.install_as_MySQLdb()
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -121,34 +114,32 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en'
-
-TIME_ZONE = 'America/Santiago'
-
+LANGUAGE_CODE = "en"
+TIME_ZONE = "America/Santiago"
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 BATON = {
-    'SITE_HEADER': 'Cthulhu', # general name
-    'SITE_TITLE': 'cthulhu', # added title
-    'INDEX_TITLE': 'Cthulhu Admin',
-    'SUPPORT_HREF': 'https://about.me/mariofix',
-    'COPYRIGHT': '&copy;2021 <a href="https://about.me/mariofix">mariofix</a>', 
-    'POWERED_BY': '<a href="https://about.me/mariofix">mariofix</a>',
-    'MENU_TITLE': 'Cthulhu',
-    'MESSAGES_TOASTS': True,
+    "SITE_HEADER": "Cthulhu",  # general name
+    "SITE_TITLE": "cthulhu",  # added title
+    "INDEX_TITLE": "Cthulhu Admin",
+    "SUPPORT_HREF": "https://about.me/mariofix",
+    "COPYRIGHT": '&copy;2021 <a href="https://about.me/mariofix">mariofix</a>',
+    "POWERED_BY": '<a href="https://about.me/mariofix">mariofix</a>',
+    "MENU_TITLE": "Cthulhu",
+    "MESSAGES_TOASTS": True,
 }
+
+LOGIN_REDIRECT_URL = "/core/postlogin"
+LOGOUT_REDIRECT_URL = "/core/postlogout"
+AUTH_USER_MODEL = "core.CoreUser"
+AUTHENTICATION_BACKENDS = ["core.backends.EmailBackend"]
