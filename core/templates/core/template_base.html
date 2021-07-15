@@ -1,0 +1,131 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title> Cthulhu Dashboard </title>
+        <meta name="description" content="Cthulhu Dashboard">
+        <meta name="author" content="mariofix">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/metismenu@3.0.7/dist/metisMenu.css">
+        <link rel="stylesheet" href="{% static 'core/css/app-red.css' %}">
+        <script src="https://kit.fontawesome.com/567201f1ae.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="main-wrapper">
+            <div class="app" id="app">
+                <header class="header">
+                    <div class="header-block header-block-collapse d-lg-none d-xl-none">
+                        <button class="collapse-btn" id="sidebar-collapse-btn">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+                    
+                    
+                    <div class="header-block header-block-nav">
+                        <ul class="nav-profile">
+                            
+                            <li class="profile dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <div class="img" style="background-image: url('https://avatars3.githubusercontent.com/u/3959008?v=3&s=40')">
+                                    </div>
+                                    <span class="name"> John Doe </span>
+                                </a>
+                                <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa fa-user icon"></i> Profile </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa fa-bell icon"></i> Notifications </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa fa-gear icon"></i> Settings </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="login.html">
+                                        <i class="fa fa-power-off icon"></i> Logout </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+                <aside class="sidebar">
+                    <div class="sidebar-container">
+                        <div class="sidebar-header">
+                            <div class="brand">
+                                <div class="logo fas fa-bacteria text-danger">
+                                </div>
+                                 Cthulhu
+                            </div>
+                        </div>
+                        <nav class="menu">
+                            <ul class="sidebar-menu metismenu" id="sidebar-menu">
+                                <li class="mm-active">
+                                    <a href="{% url 'dashboard' %}">
+                                        <i class="fa fa-home"></i> Dashboard </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-th-large"></i> Items Manager <i class="fa arrow"></i>
+                                    </a>
+                                    <ul class="sidebar-nav">
+                                        <li>
+                                            <a href="items-list.html"> Items List </a>
+                                        </li>
+                                        <li>
+                                            <a href="item-editor.html"> Item Editor </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                </aside>
+                <div class="sidebar-overlay" id="sidebar-overlay"></div>
+                <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
+                <div class="mobile-menu-handle"></div>
+                <article class="content dashboard-page">
+                    {% block maincontent %}
+                    {% endblock %}
+                </article>
+                <footer class="footer">
+                    <div class="footer-block buttons">
+                        
+                    </div>
+                    <div class="footer-block author">
+                        <ul>
+                            <li> created by <a href="https://about.me/mariofix">mariofix</a>
+                            </li>
+                            <li>
+                                <a href="https://about.me/mariofix">allura</a>
+                            </li>
+                        </ul>
+                    </div>
+                </footer>
+                
+                
+            </div>
+        </div>
+        <!-- Reference block for JS -->
+        <div class="ref" id="ref">
+            <div class="color-primary"></div>
+            <div class="chart">
+                <div class="color-primary"></div>
+                <div class="color-secondary"></div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+        <script src="{% static 'core/js/responsive-toolkit/dist/bootstrap-toolkit.js' %}"></script>
+        <script src="{% static 'core/js/tinycolor2/dist/tinycolor-min.js' %}"></script>
+        <script src="{% static 'core/js/nprogress/nprogress.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/metismenu@3.0.7/dist/metisMenu.js"></script>
+        <script src="{% static 'core/js/jquery-touchswipe/jquery.touchSwipe.js' %}"></script>
+        <script src="{% static 'core/js/jquery.browser/dist/jquery.browser.js' %}"></script>
+        <script src="{% static 'core/js/app.js' %}"></script>
+        
+    </body>
+</html>
