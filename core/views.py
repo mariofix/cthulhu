@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 from thankyou import give_thanks
 from django.contrib.auth.views import LoginView
 from .forms import CoreUserCreationForm
+from .models import CoreUser
 
 
 def index(request):
-    return redirect("/core/login")
+    return redirect("/login")
 
 
 def registro(request):
@@ -24,7 +25,12 @@ def registro(request):
 
 def postlogin(request):
     # Verificamos si es primer login para ir a buscar su informacion a API
-    return redirect("/core/dashboard")
+    if request.user != 'AnonymousUser':
+        print(request.user.email)
+        print(request.user.is_active)
+        return redirect("/dashboard")
+    else:
+        return redirect("/login")
 
 def postlogout(request):
     # Hacer algo despues?
@@ -33,8 +39,16 @@ def postlogout(request):
 def dashboard(request):
     # traemos toda la informacion adicional
     # crear clients ids y esas cosas
+    if request.user != 'AnonymousUser':
+        print(request.user.email)
+        print(request.user.is_active)
     return render(request, "core/dashboard.html")
 
+def profile(request):
+    return render(request, "core/profile.html")
+
+def help(request):
+    return render(request, "core/help.html")
 
 def hello(request):
     return render(request, "hello.html", {"thanks": give_thanks()})
