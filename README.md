@@ -8,7 +8,7 @@ FullOn CRM for personal and commercial projects
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)  
 
 ## Requirements
-* Python 3.7 / Poetry
+* Python 3.9 / Poetry
 * MariaDB
 * Django 3.2
 

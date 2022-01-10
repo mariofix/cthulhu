@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0002_rename_modules_module'),
+        ("core", "0002_rename_modules_module"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='coreuser',
-            name='country',
-            field=models.TextField(default='CL', max_length=3, verbose_name='Country'),
+            model_name="coreuser",
+            name="country",
+            field=models.TextField(default="CL", max_length=3, verbose_name="Country"),
         ),
     ]

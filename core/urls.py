@@ -1,18 +1,55 @@
 from django.urls import path, include
-from django.urls.resolvers import URLPattern
-from . import views
-from django.contrib.auth.views import LoginView
+from core import views
+from django.contrib.auth.views import (
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView,
+)
 from django.conf.urls import handler400, handler403, handler404, handler500
 
 urlpatterns = [
-    path("", views.hello, name="index"),
-    path("login/", LoginView.as_view(), name="login"),
-    path("registration/", views.registro, name="registration"),
-    path("postlogin/", views.postlogin, name="postlogin"),
+    path("", views.index, name="index"),
     path("dashboard/", views.dashboard, name="dashboard"),
     path("profile/", views.profile, name="profile"),
     path("help/", views.help, name="help"),
-    path("", include("django.contrib.auth.urls")),
+    path("accounts/postlogin/", views.postlogin, name="postlogin"),
+    path(
+        "accounts/register/",
+        views.CustomRegistrationView.as_view(),
+        name="django_registration_register",
+    ),
+    path(
+        "accounts/password_reset/",
+        PasswordResetView.as_view(
+            template_name="registration/password_reset_form.html",
+            html_email_template_name="registration/new_password_reset_email.html",
+        ),
+        name="password_reset",
+    ),
+    path(
+        "accounts/password_reset/done/",
+        PasswordResetDoneView.as_view(
+            template_name="registration/password_reset_done.html"
+        ),
+        name="password_reset_done",
+    ),
+    path(
+        "accounts/reset/<uidb64>/<token>/",
+        PasswordResetConfirmView.as_view(
+            template_name="registration/password_reset_confirm.html"
+        ),
+        name="password_reset_confirm",
+    ),
+    path(
+        "accounts/reset/done/",
+        PasswordResetCompleteView.as_view(
+            template_name="registration/password_reset_complete.html"
+        ),
+        name="password_reset_complete",
+    ),
+    path("accounts/", include("django_registration.backends.activation.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]
 
 handler400 = "core.errorviews.handle400"

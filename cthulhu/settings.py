@@ -26,23 +26,26 @@ SECRET_KEY = "key"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-ALLOWED_HOSTS = ["nagini.local"]
-INTERNAL_IPS = ["127.0.0.1", "192.168.1.89"]
-
+ALLOWED_HOSTS = ["nagini.local", "192.168.1.195"]
+INTERNAL_IPS = ["127.0.0.1", "192.168.1.195"]
+ADMINS = [
+    ("mariofix", "mariohernandezc@gmail.com"),
+]
 # Application definition
 ROOT_URLCONF = "cthulhu.urls"
 WSGI_APPLICATION = "cthulhu.wsgi.application"
 INSTALLED_APPS = [
     "baton",
+    "core",
+    "debug_toolbar",
+    "logentry_admin",
+    "django_registration",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "core",
-    "debug_toolbar",
-    "logentry_admin",
     "baton.autodiscover",
 ]
 
@@ -78,15 +81,42 @@ TEMPLATES = [
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "",
-        "HOST": "",
-        "PORT": "",
-        "USER": "",
-        "PASSWORD": "",
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": f"{BASE_DIR}/db.sqlite3",
     }
 }
 
+# Logger
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "{levelname} [{asctime}] {message}",
+            "style": "{",
+        },
+        "verbose": {
+            "format": "{asctime} {name} {levelname} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": f"{BASE_DIR}/logs/cthulhu.log",
+            "formatter": "verbose",
+        },
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+    "loggers": {
+        "django": {"handlers": ["file", "console"], "level": "INFO"},
+    },
+}
 # Fake PyMySQL's version and install as MySQLdb
 # https://adamj.eu/tech/2020/02/04/how-to-use-pymysql-with-django/
 pymysql.version_info = (1, 4, 2, "final", 0)
@@ -97,16 +127,13 @@ pymysql.install_as_MySQLdb()
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "OPTIONS": {
+            "min_length": 4,
+        },
     },
     {
         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -133,13 +160,28 @@ BATON = {
     "SITE_TITLE": "cthulhu",  # added title
     "INDEX_TITLE": "Cthulhu Admin",
     "SUPPORT_HREF": "https://about.me/mariofix",
-    "COPYRIGHT": '&copy;2021 <a href="https://about.me/mariofix">mariofix</a>',
+    "COPYRIGHT": '&copy;2022 <a href="https://about.me/mariofix">mariofix</a>',
     "POWERED_BY": '<a href="https://about.me/mariofix">mariofix</a>',
     "MENU_TITLE": "Cthulhu",
     "MESSAGES_TOASTS": True,
 }
 
-LOGIN_REDIRECT_URL = "/core/postlogin"
-LOGOUT_REDIRECT_URL = "/core/postlogout"
+LOGIN_URL = "/accounts/login"
+LOGIN_REDIRECT_URL = "/accounts/postlogin"
+LOGOUT_REDIRECT_URL = "/"
 AUTH_USER_MODEL = "core.CoreUser"
 AUTHENTICATION_BACKENDS = ["core.backends.EmailBackend"]
+# Django-registration
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_OPEN = True
+REGISTRATION_SALT = "salt"
+EMAIL_HOST = "geo.websitewelcome.com"
+EMAIL_PORT = 465
+EMAIL_TIMEOUT = 5
+EMAIL_HOST_USER = "clientes@fonotarot.com"
+EMAIL_HOST_PASSWORD = "zmlAW}wrh.ni"
+EMAIL_SUBJECT_PREFIX = "PORTAL: "
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

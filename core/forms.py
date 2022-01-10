@@ -1,15 +1,15 @@
-from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django_registration.forms import RegistrationForm
+from django.contrib.auth.forms import UserChangeForm
 from .models import CoreUser
 
 
-class CoreUserCreationForm(UserCreationForm):
-    class Meta:
+class CoreUserCreationForm(RegistrationForm):
+    class Meta(RegistrationForm.Meta):
         model = CoreUser
-        fields = ("username", "email", "country", "tz")
+        fields = ("username", "email", "phone")
 
 
 class CoreUserChangeForm(UserChangeForm):
     class Meta:
         model = CoreUser
-        fields = ("username", "email", "country", "tz")
+        fields = ("username", "email", "phone")

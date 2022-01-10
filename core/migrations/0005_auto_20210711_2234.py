@@ -9,28 +9,73 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0004_auto_20210711_2145'),
+        ("core", "0004_auto_20210711_2145"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='coreuser',
-            name='country',
-            field=models.CharField(choices=[('CL', 'Chile'), ('AR', 'Argentina'), ('PE', 'Peru'), ('EC', 'Ecuador'), ('MX', 'Mexico'), ('CO', 'Colombia'), ('US', 'USA')], default='CL', max_length=3, verbose_name='country'),
+            model_name="coreuser",
+            name="country",
+            field=models.CharField(
+                choices=[
+                    ("CL", "Chile"),
+                    ("AR", "Argentina"),
+                    ("PE", "Peru"),
+                    ("EC", "Ecuador"),
+                    ("MX", "Mexico"),
+                    ("CO", "Colombia"),
+                    ("US", "USA"),
+                ],
+                default="CL",
+                max_length=3,
+                verbose_name="country",
+            ),
         ),
         migrations.AlterField(
-            model_name='coreuser',
-            name='tz',
-            field=models.CharField(choices=[('America/Santiago', 'America/Santiago'), ('America/Buenos_Aires', 'America/Buenos_Aires'), ('America/Lima', 'America/Lima'), ('America/Guayaquil', 'America/Guayaquil'), ('America/Mexico_City', 'America/Mexico_City'), ('America/Bogota', 'America/Bogota'), ('America/New_York', 'America/New_York'), ('America/Los_Angeles', 'America/Los_Angeles'), ('America/Chicago', 'America/Chicago')], default='America/Santiago', max_length=255, verbose_name='timezone'),
+            model_name="coreuser",
+            name="tz",
+            field=models.CharField(
+                choices=[
+                    ("America/Santiago", "America/Santiago"),
+                    ("America/Buenos_Aires", "America/Buenos_Aires"),
+                    ("America/Lima", "America/Lima"),
+                    ("America/Guayaquil", "America/Guayaquil"),
+                    ("America/Mexico_City", "America/Mexico_City"),
+                    ("America/Bogota", "America/Bogota"),
+                    ("America/New_York", "America/New_York"),
+                    ("America/Los_Angeles", "America/Los_Angeles"),
+                    ("America/Chicago", "America/Chicago"),
+                ],
+                default="America/Santiago",
+                max_length=255,
+                verbose_name="timezone",
+            ),
         ),
         migrations.CreateModel(
-            name='Phone',
+            name="Phone",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('number', models.CharField(max_length=16, unique=True)),
-                ('date_created', models.DateTimeField(default=django.utils.timezone.now)),
-                ('is_active', models.BooleanField(default=True)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("number", models.CharField(max_length=16, unique=True)),
+                (
+                    "date_created",
+                    models.DateTimeField(default=django.utils.timezone.now),
+                ),
+                ("is_active", models.BooleanField(default=True)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

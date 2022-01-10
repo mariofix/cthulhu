@@ -1,9 +1,8 @@
 from django.contrib import admin
-from .models import Module, CoreUser, Phone
+from .models import CoreUser
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import get_user_model
 from .forms import CoreUserCreationForm, CoreUserChangeForm
-from django.utils.translation import gettext_lazy as _
 
 
 class CoreUserAdmin(UserAdmin):
@@ -13,25 +12,25 @@ class CoreUserAdmin(UserAdmin):
     list_display = [
         "email",
         "username",
-        "country",
+        "phone",
     ]
     add_fieldsets = (
         (
             None,
             {
                 "classes": ("wide",),
-                "fields": ("email", "password1", "password2", "country", "tz"),
+                "fields": ("username", "email", "phone", "password1", "password2"),
             },
         ),
     )
     fieldsets = (
-        (None, {"fields": ("username", "password")}),
+        (None, {"fields": ("username", "password", "email", "phone")}),
         (
-            _("Personal info"),
-            {"fields": ("first_name", "last_name", "email", "country", "tz")},
+            "Personal info",
+            {"fields": ("first_name", "last_name")},
         ),
         (
-            _("Permissions"),
+            "Permissions",
             {
                 "fields": (
                     "is_active",
@@ -42,15 +41,8 @@ class CoreUserAdmin(UserAdmin):
                 ),
             },
         ),
-        (_("Important dates"), {"fields": ("last_login", "date_joined")}),
+        ("Important dates", {"fields": ("last_login", "date_joined")}),
     )
 
 
-class PhoneAdmin(admin.ModelAdmin):
-    list_display = ("number", "user", "date_created", "is_active")
-    list_editable = ("is_active",)
-
-
-admin.site.register(Module)
-admin.site.register(Phone, PhoneAdmin)
 admin.site.register(CoreUser, CoreUserAdmin)

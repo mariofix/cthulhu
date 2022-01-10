@@ -5,13 +5,14 @@ description = "De todito"
 authors = ["Mario Hernandez <yo@mariofix.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
-Django = "^3.2.5"
-django-baton = "^2.2.1"
-django-debug-toolbar = "^3.2.1"
+python = "^3.9"
+Django = "^3.2.1"
+django-baton = "^2.2.3"
+django-debug-toolbar = "^3.2.4"
 django-logentry-admin = "^1.1.0"
 thankyou = "^0.0.1"
 PyMySQL = "^1.0.2"
+django-registration = "^3.2"
 
 
 [tool.poetry.dev-dependencies]
