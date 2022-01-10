@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import CoreUser
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth import get_user_model
-from .forms import CoreUserCreationForm, CoreUserChangeForm
+from core.forms import CoreUserCreationForm, CoreUserChangeForm
+from core.models import CoreUser
 
 
 class CoreUserAdmin(UserAdmin):

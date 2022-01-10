@@ -5,7 +5,6 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from thankyou import give_thanks
 from .forms import CoreUserCreationForm
-from .models import CoreUser
 from django_registration.backends.activation.views import RegistrationView
 
 
@@ -55,20 +54,6 @@ class CustomRegistrationView(RegistrationView):
 
 def index(request):
     return render(request, "hello.html", {"thanks": give_thanks()})
-
-
-def registro(request):
-    if request.method == "POST":
-        form = CoreUserCreationForm(request.POST)
-
-        if form.is_valid():
-            form.is_active = False
-            form.save()
-            return render(request, "registration/post_register.html")
-    else:
-        form = CoreUserCreationForm()
-    datos = {"form": form}
-    return render(request, "registration/register.html", datos)
 
 
 def postlogin(request):
