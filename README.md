@@ -4,7 +4,6 @@ Cthulhu
   
 FullOn CRM for personal and commercial projects  
 
-![Tests](https://github.com/mariofix/cthulhu/workflows/CodeQL/badge.svg)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)  
 
 ## Requirements
@@ -24,5 +23,7 @@ $ git pull github django-dev
 ## Run
 ```bash
 $ poetry install
+$ poetry run python django-admin compilemessages
+$ poetry run python manage.py migrate
 $ poetry run python manage.py runserver
 ```

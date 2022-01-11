@@ -6,6 +6,10 @@ from django.conf import settings
 from thankyou import give_thanks
 from .forms import CoreUserCreationForm
 from django_registration.backends.activation.views import RegistrationView
+from django.contrib.auth.decorators import login_required
+import logging
+
+logger = logging.getLogger("django")
 
 
 class CustomRegistrationView(RegistrationView):
@@ -56,25 +60,23 @@ def index(request):
     return render(request, "hello.html", {"thanks": give_thanks()})
 
 
+@login_required
 def postlogin(request):
-    # Verificamos si es primer login para ir a buscar su informacion a API
-    if request.user != "AnonymousUser":
-        print(request.user.email)
-        print(request.user.is_active)
-        return redirect("/dashboard")
-    else:
-        return redirect("/login")
+    # Pre-flight checks
+    logger.info("postlogin")
+    bye = "/dashboard"
+    return redirect(bye)
 
 
+@login_required
 def dashboard(request):
-    # traemos toda la informacion adicional
-    # crear clients ids y esas cosas
-    if request.user != "AnonymousUser":
-        print(request.user.email)
-        print(request.user.is_active)
-    return render(request, "core/dashboard.html")
+    logger.info(request.user.email)
+    logger.info(request.user.is_active)
+    context = {"modulos": []}
+    return render(request, "core/dashboard.html", context)
 
 
+@login_required
 def profile(request):
     return render(request, "core/profile.html")
 

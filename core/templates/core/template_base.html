@@ -1,11 +1,12 @@
 {% load static %}
+{% load i18n %}
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="{{LANGUAGE_CODE}}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>{% block title %}Cthulhu{% endblock %}</title>
-        <meta name="description" content="Cthulhu Dashboard">
+        <title>{% block title %}{% endblock %} - {{app_name}}</title>
+        <meta name="description" content="{{app_name}}">
         <meta name="author" content="mariofix">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -36,12 +37,12 @@
                                 </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <a class="dropdown-item" href="{% url 'profile' %}">
-                                        <i class="fa fa-user icon"></i> Profile </a>
+                                        <i class="fa fa-user icon"></i> {% translate "Profile" %} </a>
                                     <a class="dropdown-item" href="{% url 'help' %}">
-                                        <i class="fa fa-info-circle icon"></i> Help </a>
+                                        <i class="fa fa-info-circle icon"></i> {% translate "Help" %} </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{% url 'logout' %}">
-                                        <i class="fa fa-power-off icon"></i> Logout </a>
+                                        <i class="fa fa-power-off icon"></i> {% translate "Logout" %} </a>
                                 </div>
                             </li>
                         </ul>
@@ -53,28 +54,25 @@
                             <div class="brand">
                                 <div class="logo fas fa-bacteria text-danger">
                                 </div>
-                                 Cthulhu
+                                {{app_name}}
                             </div>
                         </div>
                         <nav class="menu">
                             <ul class="sidebar-menu metismenu" id="sidebar-menu">
                                 <li class="mm-active">
                                     <a href="{% url 'dashboard' %}">
-                                        <i class="fa fa-home"></i> Dashboard </a>
+                                        <i class="fa fa-home"></i> {% translate "Dashboard" %} </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-th-large"></i> Items Manager <i class="fa arrow"></i>
-                                    </a>
-                                    <ul class="sidebar-nav">
-                                        <li>
-                                            <a href="items-list.html"> Items List </a>
-                                        </li>
-                                        <li>
-                                            <a href="item-editor.html"> Item Editor </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <!-- Menus de apps -->
+                                {% for m in app_modules %}
+                                    {% include m.menu %}
+                                {% endfor %}
+                                <!-- /Menus de apps -->
+                                <!-- Menus extra -->
+                                {% block extra_menu %}
+
+                                {% endblock %}
+                                <!-- /Menus extra -->
                                 
                             </ul>
                         </nav>
@@ -94,10 +92,10 @@
                     </div>
                     <div class="footer-block author">
                         <ul>
-                            <li> created by <a href="https://about.me/mariofix">mariofix</a>
+                            <li> {% translate "developed by" %} <a href="https://about.me/mariofix">mariofix</a>
                             </li>
                             <li>
-                                <a href="https://about.me/mariofix">allura</a>
+                                <a href="https://about.me/mariofix">{% translate "Help" %}</a>
                             </li>
                         </ul>
                     </div>
