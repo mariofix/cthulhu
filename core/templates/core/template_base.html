@@ -69,9 +69,7 @@
                                 {% endfor %}
                                 <!-- /Menus de apps -->
                                 <!-- Menus extra -->
-                                {% block extra_menu %}
-
-                                {% endblock %}
+                                {% block extra_menu %}{% endblock %}
                                 <!-- /Menus extra -->
                                 
                             </ul>
@@ -82,10 +80,7 @@
                 <div class="sidebar-overlay" id="sidebar-overlay"></div>
                 <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
                 <div class="mobile-menu-handle"></div>
-                <article class="content dashboard-page">
-                    {% block maincontent %}
-                    {% endblock %}
-                </article>
+                {% block maincontent %}{% endblock %}
                 <footer class="footer">
                     <div class="footer-block buttons">
                         
@@ -95,7 +90,7 @@
                             <li> {% translate "developed by" %} <a href="https://about.me/mariofix">mariofix</a>
                             </li>
                             <li>
-                                <a href="https://about.me/mariofix">{% translate "Help" %}</a>
+                                <a href="{% url 'help' %}">{% translate "Help" %}</a>
                             </li>
                         </ul>
                     </div>
@@ -122,6 +117,6 @@
         <script src="{% static 'core/js/jquery-touchswipe/jquery.touchSwipe.js' %}"></script>
         <script src="{% static 'core/js/jquery.browser/dist/jquery.browser.js' %}"></script>
         <script src="{% static 'core/js/app.js' %}"></script>
-        
+        {% block js_scripts %}{% endblock %}
     </body>
 </html>

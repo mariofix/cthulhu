@@ -10,9 +10,9 @@ from django.conf.urls import handler400, handler403, handler404, handler500
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("dashboard/", views.dashboard, name="dashboard"),
-    path("profile/", views.profile, name="profile"),
-    path("help/", views.help, name="help"),
+    path("dashboard/", views.DashboardView.as_view(), name="dashboard"),
+    path("profile/", views.UpdateProfileView.as_view(), name="profile"),
+    path("help/", views.HelpView.as_view(), name="help"),
     path("accounts/postlogin/", views.postlogin, name="postlogin"),
     path(
         "accounts/register/",

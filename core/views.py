@@ -3,10 +3,14 @@ from django.urls import reverse_lazy
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.conf import settings
-from thankyou import give_thanks
-from .forms import CoreUserCreationForm
 from django_registration.backends.activation.views import RegistrationView
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
+from django.views.generic.edit import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from core.forms import CoreUserCreationForm
+from core.models import CoreUser
+from thankyou import give_thanks
 import logging
 
 logger = logging.getLogger("django")
@@ -56,6 +60,24 @@ class CustomRegistrationView(RegistrationView):
         return f"{context['scheme']}://{context['site']}/accounts/activate/{context['activation_key']}"
 
 
+class UpdateProfileView(LoginRequiredMixin, UpdateView):
+    model = CoreUser
+    fields = ["username", "first_name", "last_name", "email", "phone"]
+    template_name = "core/profile.html"
+    success_url = reverse_lazy("profile")
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+
+class HelpView(TemplateView):
+    template_name = "core/help.html"
+
+
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = "core/dashboard.html"
+
+
 def index(request):
     return render(request, "hello.html", {"thanks": give_thanks()})
 
@@ -66,20 +88,3 @@ def postlogin(request):
     logger.info("postlogin")
     bye = "/dashboard"
     return redirect(bye)
-
-
-@login_required
-def dashboard(request):
-    logger.info(request.user.email)
-    logger.info(request.user.is_active)
-    context = {"modulos": []}
-    return render(request, "core/dashboard.html", context)
-
-
-@login_required
-def profile(request):
-    return render(request, "core/profile.html")
-
-
-def help(request):
-    return render(request, "core/help.html")

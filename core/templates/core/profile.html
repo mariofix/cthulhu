@@ -1,3 +1,35 @@
 {% extends 'core/template_base.html' %}
 {% load i18n %}
-{% block title %}{% translate "User Profile" %}{% endblock %}
+{% block title %}{% translate "Update Profile" %}{% endblock %}
+
+{% block maincontent %}
+<article class="content update-profile">
+    <div class="title-block">
+        <h3 class="title"> {% translate "User Profile" %} </h3>
+    </div>
+    <section class="section">
+        <div class="row sameheight-container">
+            <div class="col-md-12">
+                <div class="card sameheight-item">
+                    <div class="card-block">
+                        <section class="section">
+                            <form role="form" action="{% url 'profile' %}" method="post">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                <div class="form-group">
+                                    <label class="control-label" for="{{ field.html_name }}">{{ field.label }}</label>
+                                    <input type="text" class="form-control underlined" name="{{ field.html_name }}" id="{{ field.html_name }}" value="{{ field.value }}">
+                                </div>
+                                {% endfor %}
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary-outline">{% translate "Update" %}</div>
+                                </div>
+                            </form>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock %}

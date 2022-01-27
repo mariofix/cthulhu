@@ -1,6 +1,6 @@
 from django_registration.forms import RegistrationForm
 from django.contrib.auth.forms import UserChangeForm
-from .models import CoreUser
+from core.models import CoreUser
 
 
 class CoreUserCreationForm(RegistrationForm):

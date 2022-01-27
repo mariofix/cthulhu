@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cthulhu-0.0.1\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: yo@mariofix.com\n"
 "POT-Creation-Date: 2022-01-11 03:10-0300\n"
-"PO-Revision-Date: 2022-01-10 19:39+CLT\n"
+"PO-Revision-Date: 2022-01-26 23:05-0300\n"
 "Last-Translator: mariofix\n"
 "Language-Team: ES <LL@li.org>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: core/admin.py:29
 msgid "Personal info"
-msgstr "Informacion Personal"
+msgstr "Informacion personal"
 
 #: core/admin.py:33
 msgid "Permissions"
@@ -28,7 +28,7 @@ msgstr "Permisos"
 
 #: core/admin.py:44
 msgid "Important dates"
-msgstr "Fechas Importantes"
+msgstr "Fechas importantes"
 
 #: core/templates/core/dashboard.html:3
 #: core/templates/core/template_base.html:64
@@ -36,13 +36,21 @@ msgid "Dashboard"
 msgstr "Tablero"
 
 #: core/templates/core/help.html:3 core/templates/core/template_base.html:42
-#: core/templates/core/template_base.html:98
+#: core/templates/core/template_base.html:93
 msgid "Help"
 msgstr "Ayuda"
 
 #: core/templates/core/profile.html:3
+msgid "Update Profile"
+msgstr "Actualizar perfil"
+
+#: core/templates/core/profile.html:8
 msgid "User Profile"
 msgstr "Perfil de Usuario"
+
+#: core/templates/core/profile.html:25
+msgid "Update"
+msgstr "Actualizar"
 
 #: core/templates/core/template_base.html:40
 msgid "Profile"
@@ -52,9 +60,9 @@ msgstr "Perfil"
 msgid "Logout"
 msgstr "Salir"
 
-#: core/templates/core/template_base.html:95
+#: core/templates/core/template_base.html:90
 msgid "developed by"
-msgstr ""
+msgstr "desarrollado por"
 
 #: core/templates/django_registration/activation_complete.html:3
 #: core/templates/django_registration/registration_complete.html:3
