@@ -6,25 +6,25 @@ authors = ["Mario Hernandez <yo@mariofix.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-Django = "^3.2.1"
-django-baton = "^2.2.3"
-django-debug-toolbar = "^3.2.4"
-django-logentry-admin = "^1.1.0"
+Django = "^4.1"
 thankyou = "^0.0.1"
 PyMySQL = "^1.0.2"
-django-registration = "^3.2"
-
-[tool.poetry.group.dev]
-optional = true
+django-baton = "^2.4.1"
+django-debug-toolbar = "^3.6.0"
+django-logentry-admin = "^1.1.0"
+django-registration = "^3.3"
+celery = "^5.2.7"
+django-celery-results = "^2.4.0"
+redis = "^4.3.4"
+python-dotenv = "^0.20.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "*"
-
-[tool.poetry.group.test]
-optional = true
-
-[tool.poetry.group.test.dependencies]
 pytest = "*"
+
+
+[tool.poetry.group.deploy.dependencies]
+gunicorn = "^20.1.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

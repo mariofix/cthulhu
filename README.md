@@ -8,8 +8,8 @@ FullOn CRM for personal and commercial projects
 
 ## Requirements
 * Python 3.9 / Poetry
-* MariaDB
-* Django 3.2
+* MariaDB/MySQL
+* Django 4.1
 
 ## Install
 ```bash
