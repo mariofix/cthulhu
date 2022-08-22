@@ -10,6 +10,7 @@ from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from core.forms import CoreUserCreationForm
 from core.models import CoreUser
+from core.tasks import send_email
 from thankyou import give_thanks
 import logging
 
@@ -45,6 +46,7 @@ class CustomRegistrationView(RegistrationView):
             context=context,
             request=self.request,
         )
+        ### Cambiar por send_email.delay()
         email = EmailMessage(
             subject,
             html_content,
