@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.template.loader import render_to_string
-from django.core.mail import EmailMessage
-from django.conf import settings
 from django_registration.backends.activation.views import RegistrationView
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
@@ -41,22 +39,25 @@ class CustomRegistrationView(RegistrationView):
         # Force subject to a single line to avoid header-injection
         # issues.
         subject = "".join(subject.splitlines())
+        txt_content = render_to_string(
+            template_name=self.email_body_template_txt,
+            context=context,
+            request=self.request,
+        )
         html_content = render_to_string(
             template_name=self.email_body_template_html,
             context=context,
             request=self.request,
         )
-        ### Cambiar por send_email.delay()
-        email = EmailMessage(
-            subject,
-            html_content,
-            settings.DEFAULT_FROM_EMAIL,
-            [user.email],
-            [settings.ADMINS[0][1]],
-            headers={"X-Activation-Url": self.get_activation_link(context)},
+        send_email.apply_async(
+            args=[
+                subject,
+                txt_content,
+                html_content,
+                user.email,
+                {"X-Activation-Url": self.get_activation_link(context)},
+            ]
         )
-        email.content_subtype = "html"
-        email.send()
 
     def get_activation_link(self, context):
         return f"{context['scheme']}://{context['site']}/accounts/activate/{context['activation_key']}"
