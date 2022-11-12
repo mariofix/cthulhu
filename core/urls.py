@@ -6,7 +6,6 @@ from django.contrib.auth.views import (
     PasswordResetConfirmView,
     PasswordResetCompleteView,
 )
-from django.conf.urls import handler400, handler403, handler404, handler500
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -51,8 +50,3 @@ urlpatterns = [
     path("accounts/", include("django_registration.backends.activation.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
 ]
-
-handler400 = "core.errorviews.handle400"
-handler403 = "core.errorviews.handle403"
-handler404 = "core.errorviews.handle404"
-handler500 = "core.errorviews.handle500"
