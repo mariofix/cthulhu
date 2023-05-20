@@ -7,7 +7,7 @@ authors = ["Mario Hernandez <yo@mariofix.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 Django = "^4.1"
-thankyou = "^0.0.1"
+thankyou = "^0.0.3"
 PyMySQL = "^1.0.2"
 django-baton = "^2.4.1"
 django-debug-toolbar = "^3.6.0"
